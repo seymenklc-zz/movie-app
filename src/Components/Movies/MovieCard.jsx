@@ -14,7 +14,7 @@ const MovieCard = ({ searchValue }) => {
     const classes = useStyles();
 
     const getMovieRequest = async (searchValue) => {
-        const { data } = await axios(`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`);
+        const { data } = await axios(`https://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`);
 
         if (data.Search) setMovies(data.Search);
         setIsLoading(false);
