@@ -14,7 +14,7 @@ const MovieCard = ({ searchValue }) => {
     const classes = useStyles();
 
     const getMovieRequest = async (searchValue) => {
-        const { data } = await axios(`http://www.omdbapi.com/?s=${searchValue}&apikey=ff04e4ff`);
+        const { data } = await axios(`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`);
 
         if (data.Search) setMovies(data.Search);
         setIsLoading(false);
@@ -22,7 +22,7 @@ const MovieCard = ({ searchValue }) => {
 
     useEffect(() => {
         getMovieRequest(searchValue);
-    }, [searchValue, movies]);
+    }, [searchValue]);
 
     return (
         <>
@@ -45,4 +45,4 @@ const MovieCard = ({ searchValue }) => {
     );
 };
 
-export default MovieCard;
+export default MovieCard;;;;

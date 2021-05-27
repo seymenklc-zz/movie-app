@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,14 +9,11 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import MovieIcon from '@material-ui/icons/Movie';
-import useStyles from './styles';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 
+import useStyles from './styles';
 
 export default function AddMovie() {
-    const classes = useStyles();
-    const history = useHistory();
-
     const [title, setTitle] = useState('');
     const [rating, setRating] = useState('');
     const [imageURL, setImageURL] = useState('');
@@ -25,6 +23,9 @@ export default function AddMovie() {
     const [ratingError, setRatingError] = useState(false);
     const [imageURLError, setImageURLError] = useState(false);
     const [overviewError, setOverviewError] = useState(false);
+
+    const classes = useStyles();
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,7 +46,6 @@ export default function AddMovie() {
         if (overview === '') {
             setOverviewError(true);
         }
-
         if (title && rating && imageURL && overview) {
             fetch('http://localhost:8000/movies', {
                 method: 'POST',

@@ -8,6 +8,7 @@ import useStyles from './styles';
 
 const FabIcon = () => {
     const classes = useStyles();
+
     return (
         <div>
             <Link to='/addmovie'>

@@ -8,7 +8,6 @@ import Navbar from './Components/Navbar/Navbar';
 import MovieCard from './Components/Movies/MovieCard';
 import Footer from './Components/Footer/Footer';
 import AddMovie from './Components/AddMovie/AddMovie';
-import MovieDetails from './Components/MovieDetails/MovieDetails';
 
 const theme = createMuiTheme({ palette: { secondary: deepPurple } });
 
@@ -27,9 +26,6 @@ const App = () => {
                     </Route>
                     <Route exact path='/addmovie'>
                         <AddMovie />
-                    </Route>
-                    <Route exact path='/movies/:id'>
-                        <MovieDetails />
                     </Route>
                 </Switch>
             </Router>
