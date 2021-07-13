@@ -1,14 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
+import { AppBar, Toolbar, Typography, InputBase, Container } from '@material-ui/core';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import MovieIcon from '@material-ui/icons/Movie';
-import Container from '@material-ui/core/Container';
 
 import useStyles from './styles';
 
@@ -23,7 +20,7 @@ const Navbar = ({ searchValue, setSearchValue }) => {
                         <MovieIcon edge="start" className={classes.menuButton} color="inherit">
                             <MenuIcon />
                         </MovieIcon>
-                        <Link to='/' className={classes.title}>
+                        <Link to='/' className={classes.title} onClick={() => setSearchValue('')}>
                             <Typography variant='h6' noWrap>Movie List API</Typography>
                         </Link>
                         <div className={classes.search}>

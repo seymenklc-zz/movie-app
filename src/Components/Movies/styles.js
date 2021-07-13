@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     card: {
         maxWidth: 345,
         marginTop: '30px',
@@ -24,11 +24,7 @@ const useStyles = makeStyles((theme) => ({
     rating: {
         flexShrink: 1,
         marginLeft: '260px',
-    },
-    link: {
-        textDecoration: 'none',
-        color: 'black'
     }
-}));
+});
 
 export default useStyles;

@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
-
 import axios from 'axios';
+
 import { Container, LinearProgress, Grid, Typography } from '@material-ui/core';
 
 import useStyles from './styles';
-import FabIcon from '../Fab/Fab';
 import MovieItem from './MovieItem';
 
-const MovieCard = ({ searchValue }) => {
+const MovieCard = ({ searchValue, truncateOverview }) => {
     const [movies, setMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const classes = useStyles();
 
     const getMovieRequest = async (searchValue) => {
-        const { data } = await axios(`https://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`);
-
-        if (data.Search) setMovies(data.Search);
-        setIsLoading(false);
+        try {
+            setIsLoading(true);
+            const { data } = await axios(`https://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`);
+            if (data.Search) setMovies(data.Search);
+            setIsLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
@@ -25,23 +28,26 @@ const MovieCard = ({ searchValue }) => {
     }, [searchValue]);
 
     return (
-        <>
+        <div>
             {isLoading && <LinearProgress />}
             {searchValue === '' ? (
-                <Typography variant='h5' align='center'>Search a movie!</Typography>
+                <Typography style={{ marginTop: 100 }} color='error' variant='h4' align='center'>Search a movie!</Typography>
             ) : (
-                <>
+                <div>
                     <Container className={classes.main}>
                         <Grid container spacing={4} justify='center'>
                             {movies.map((movie) => (
-                                <MovieItem key={movie.imdbID} movie={movie} />
+                                <MovieItem
+                                    key={movie.imdbID}
+                                    movie={movie}
+                                    truncateOverview={truncateOverview}
+                                />
                             ))}
                         </Grid>
                     </Container>
-                    <FabIcon />
-                </>
+                </div>
             )}
-        </>
+        </div>
     );
 };
 
