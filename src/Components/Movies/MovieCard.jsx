@@ -51,4 +51,4 @@ const MovieCard = ({ searchValue, truncateOverview }) => {
     );
 };
 
-export default MovieCard;;;;
+export default MovieCard;
